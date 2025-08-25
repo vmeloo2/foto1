@@ -1,49 +1,45 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <title>Minha Foto</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#297B42" id="theme-color">
-   <style>
-    body {
+  <style>
+    :root{
+      /* se quiser mudar o fundo do site, altere aqui */
+      --site-bg: #cfe5d7; /* verde claro do seu fundo */
+    }
+    html, body {
       margin: 0;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      flex-direction: column;
+      background: var(--site-bg);
     }
     img {
       max-width: 100%;
       height: auto;
-      display: block; /* remove linha preta abaixo da imagem */
+      display: block;          /* evita linha por ser inline */
+      border: 0;
+      outline: 0;
+      box-shadow: none;
+    }
+    /* Fallback para iOS Safari (artefato de subpixel) */
+    @supports (-webkit-touch-callout: none) {
+      img { margin-bottom: -1px; }
     }
   </style>
 </head>
 <body>
-  <img src="D9778246-95AB-45C6-8A7E-6CFFF32021B4.jpeg" alt="Minha Foto" {display: block} />
+  <img src="19DCBF53-5885-48BB-ACC4-D91DDF03FF60.jpeg" alt="Minha Foto" />
 
   <script>
-    const metaThemeColor = document.querySelector("meta[name=theme-color]");
-
-    window.addEventListener("scroll", () => {
-      // calcula quanto rolou (0 no topo até 1 no fundo)
-      const scrollPercent = Math.min(window.scrollY / 150, 1);
-
-      // cores em RGB
-      const startColor = [41, 123, 66];   // verde #297B42
-      const endColor   = [255, 255, 255]; // branco #FFFFFF
-
-      // faz o "blend" entre verde e branco
-      const blended = startColor.map((c, i) => 
-        Math.round(c + (endColor[i] - c) * scrollPercent)
-      );
-
-      const newColor = `rgb(${blended[0]}, ${blended[1]}, ${blended[2]})`;
-      metaThemeColor.setAttribute("content", newColor);
+    // Barra superior: verde no topo -> branco ao rolar (suave)
+    const metaThemeColor = document.querySelector('meta[name=theme-color]');
+    window.addEventListener('scroll', () => {
+      const t = Math.min(window.scrollY / 150, 1);
+      const start = [41,123,66];   // #297B42
+      const end   = [255,255,255]; // #FFFFFF
+      const mix = start.map((c,i)=>Math.round(c+(end[i]-c)*t));
+      metaThemeColor.setAttribute('content', `rgb(${mix[0]},${mix[1]},${mix[2]})`);
     });
+
+    // Camufla qualquer “hairline” pintando a borda inferior da imagem
+    // com a MESMA cor do fundo do body:
+    const img = document.querySelector('img');
+    const bodyBg = getComputedStyle(document.body).backgroundColor;
+    img.style.borderBottom = `1px solid ${bodyBg}`;
   </script>
 </body>
 </html>
