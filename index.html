@@ -1,60 +1,75 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <title>Minha Foto</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Ativa modo webapp no iOS -->
+  <!-- Define a cor da barra no Safari normal -->
+  <meta name="theme-color" content="#297B42">
+
+  <!-- Ativa modo app no iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <!-- Define estilo da barra de status no iOS -->
+  <!-- Faz a barra usar o fundo por trás (nesse caso, nosso verde inicial) -->
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-   <!-- Cor da barra de navegação nos navegadores (Android/Chrome) -->
-  <meta name="theme-color" content="#297B42" id="theme-color">
-  
-<style>
-  :root{ 
-    --site-bg: #297B42; /* mudar o fundo do site */
-   }
-  html, body {
-    margin: 0; /* remove margens padrão do navegador */
-    background: var(--site-bg); /* aplica a cor definida na variável acima */
-   }
-  img {
-    max-width: 100%;  /* imagem nunca ultrapassa a largura da tela */
-    height: auto;     /* altura ajusta proporcionalmente */
-    display: block;   /* evita espaços indesejados (inline) */
-    border: 0;        /* remove borda da imagem */
-    outline: 0;       /* remove contorno ao clicar */
-    box-shadow: none; /* remove sombra automática */
-   }
-  /* Fallback para iOS Safari (corrige artefato de subpixel) */
-  @supports (-webkit-touch-callout: none) {
-    img { margin-bottom: -1px; }
-   }
- </style>
+
+  <title>Site com Transição</title>
+
+  <style>
+    /* Remove margens padrão */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      
+      /* Aqui é importante: esse fundo é o que o iOS usa na barra quando aberto como app */
+      background: linear-gradient(to bottom, #297B42 50%, white 70%);
+      background-attachment: fixed; /* mantém a transição fixa */
+    }
+
+    /* Centraliza conteúdo */
+    .container {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    /* Título */
+    h1 {
+      font-size: 2.5rem;
+      color: white;
+    }
+
+    /* Imagem */
+    .logo {
+      width: 300px;
+      max-width: 80%;
+      display: block;
+      margin: 20px auto;
+    }
+
+    /* Texto abaixo da logo */
+    p {
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    /* Responsividade para mobile */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+      .logo {
+        width: 220px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- Nome do arquivo da foto que subiu para o repositório-->
-  <img src="D9778246-95AB-45C6-8A7E-6CFFF32021B4.jpeg" alt="Minha Foto" {display: block} />
-  <script>
-    /* Seleciona a meta tag que controla a cor da barra do navegador */
-    const metaThemeColor = document.querySelector("meta[name=theme-color]");
-    /* Ouvinte para detectar rolagem da página */
-    window.addEventListener("scroll", () => {
-      /* Calcula quanto rolou (0 no topo até 1 no fundo da imagem em 130px) */
-      const scrollPercent = Math.min(window.scrollY / 130, 1);
-      /* Cores em RGB */
-      const startColor = [41, 123, 66];   // verde #297B42
-      const endColor   = [255, 255, 255]; // branco #FFFFFF
-      /* Faz a transição ("blend") entre as cores conforme a rolagem */
-      const blended = startColor.map((c, i) => 
-        Math.round(c + (endColor[i] - c) * scrollPercent)
-      );
-      /* Define a nova cor em formato rgb() */
-      const newColor = `rgb(${blended[0]}, ${blended[1]}, ${blended[2]})`;
-      /* Atualiza a cor da barra do navegador em tempo real */
-      metaThemeColor.setAttribute("content", newColor);
-    });
-  </script>
+  <div class="container">
+    <h1>Meu Site</h1>
+    <img src="logo.png" alt="Logo" class="logo">
+    <p>Conteúdo aqui</p>
+  </div>
 </body>
 </html>
