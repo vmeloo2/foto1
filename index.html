@@ -15,16 +15,17 @@
       margin: 0;
       background: var(--site-bg);
     }
-    body {
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #000;
-    }
     img {
       max-width: 100%;
       height: auto;
+      display: block;          /* evita linha por ser inline */
+      border: 0;
+      outline: 0;
+      box-shadow: none;
+    }
+    /* Fallback para iOS Safari (artefato de subpixel) */
+    @supports (-webkit-touch-callout: none) {
+      img { margin-bottom: -1px; }
     }
   </style>
 </head>
