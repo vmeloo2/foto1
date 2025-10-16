@@ -41,30 +41,20 @@
   <!-- Aqui você troca o nome do arquivo da sua foto -->
   <img src="D9778246-95AB-45C6-8A7E-6CFFF32021B4.jpeg" alt="Minha Foto" />
 
-  <script>
-    /* Seleciona a meta tag que controla a cor da barra do navegador */
-    const metaThemeColor = document.querySelector("meta[name=theme-color]");
+<script>
+  const metaThemeColor = document.querySelector("meta[name=theme-color]");
+  metaThemeColor.setAttribute("content", "#297B42"); // define a cor inicial
 
-    /* Ouvinte para detectar rolagem da página */
-    window.addEventListener("scroll", () => {
-      /* Calcula quanto rolou (0 no topo até 1 no fundo da imagem em 150px) */
-      const scrollPercent = Math.min(window.scrollY / 150, 1);
-
-      /* Cores em RGB */
-      const startColor = [41, 123, 66];   // cor inicial (verde #297B42)
-      const endColor   = [255, 255, 255]; // cor final (branco #FFFFFF)
-
-      /* Faz a transição ("blend") entre as cores conforme a rolagem */
-      const blended = startColor.map((c, i) => 
-        Math.round(c + (endColor[i] - c) * scrollPercent)
-      );
-
-      /* Define a nova cor em formato rgb() */
-      const newColor = `rgb(${blended[0]}, ${blended[1]}, ${blended[2]})`;
-
-      /* Atualiza a cor da barra do navegador em tempo real */
-      metaThemeColor.setAttribute("content", newColor);
-    });
-  </script>
+  window.addEventListener("scroll", () => {
+    const scrollPercent = Math.min(window.scrollY / 150, 1);
+    const startColor = [41, 123, 66];
+    const endColor   = [255, 255, 255];
+    const blended = startColor.map((c, i) => 
+      Math.round(c + (endColor[i] - c) * scrollPercent)
+    );
+    const newColor = `rgb(${blended[0]}, ${blended[1]}, ${blended[2]})`;
+    metaThemeColor.setAttribute("content", newColor);
+  });
+</script>
 </body>
 </html>
