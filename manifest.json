@@ -1,0 +1,8 @@
+{
+  "name": "Meu Site",
+  "short_name": "Site",
+  "theme_color": "#297B42",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/"
+}
