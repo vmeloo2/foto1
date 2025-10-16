@@ -9,47 +9,58 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <!-- Cor da barra de navegação nos navegadores (Android/Chrome) -->
   <meta name="theme-color" content="#297B42" id="theme-color">
-
   <style>
+   :root{
+      /* Se quiser mudar o fundo do site, altere aqui */
+      --site-bg: #ffffff;
+   }
+
    html, body {
-      margin: 0;
-      height: 100%;
-      background: linear-gradient(to bottom, #297B42 0%, #ffffff 100%);
-      display: flex;
-      justify-content: center;
-      align-items: start;
+      margin: 0;               /* remove margens padrão do navegador */
+      background: var(--site-bg); /* aplica a cor definida na variável acima */
    }
 
    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      border: 0;
-      outline: 0;
-      box-shadow: none;
+      max-width: 100%;  /* imagem nunca ultrapassa a largura da tela */
+      height: auto;     /* altura ajusta proporcionalmente */
+      display: block;   /* evita espaços indesejados (inline) */
+      border: 0;        /* remove borda da imagem */
+      outline: 0;       /* remove contorno ao clicar */
+      box-shadow: none; /* remove sombra automática */
    }
 
+   /* Fallback para iOS Safari (corrige artefato de subpixel) */
    @supports (-webkit-touch-callout: none) {
       img { margin-bottom: -1px; }
    }
   </style>
 </head>
 <body>
-  <!-- Substitua pelo nome da sua imagem -->
+  <!-- Aqui você troca o nome do arquivo da sua foto -->
   <img src="D9778246-95AB-45C6-8A7E-6CFFF32021B4.jpeg" alt="Minha Foto" />
 
   <script>
-    // Define a cor inicial da barra ao carregar
+    /* Seleciona a meta tag que controla a cor da barra do navegador */
     const metaThemeColor = document.querySelector("meta[name=theme-color]");
-    metaThemeColor.setAttribute("content", "#297B42");
 
-    // Atualiza conforme a rolagem (mantém o degradê coerente)
+    /* Ouvinte para detectar rolagem da página */
     window.addEventListener("scroll", () => {
+      /* Calcula quanto rolou (0 no topo até 1 no fundo da imagem em 150px) */
       const scrollPercent = Math.min(window.scrollY / 150, 1);
-      const startColor = [41, 123, 66];   // verde #297B42
-      const endColor   = [255, 255, 255]; // branco
-      const blended = startColor.map((c, i) => Math.round(c + (endColor[i] - c) * scrollPercent));
+
+      /* Cores em RGB */
+      const startColor = [41, 123, 66];   // cor inicial (verde #297B42)
+      const endColor   = [255, 255, 255]; // cor final (branco #FFFFFF)
+
+      /* Faz a transição ("blend") entre as cores conforme a rolagem */
+      const blended = startColor.map((c, i) => 
+        Math.round(c + (endColor[i] - c) * scrollPercent)
+      );
+
+      /* Define a nova cor em formato rgb() */
       const newColor = `rgb(${blended[0]}, ${blended[1]}, ${blended[2]})`;
+
+      /* Atualiza a cor da barra do navegador em tempo real */
       metaThemeColor.setAttribute("content", newColor);
     });
   </script>
