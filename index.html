@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-  <!-- Configurações do PWA -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#297B42">
 
-  <!-- Configuração para iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Meu Site">
@@ -21,37 +19,24 @@
       --verde-topo: #297B42;
       --branco-base: #ffffff;
     }
-
     html, body {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       height: 100%;
-      background: linear-gradient(var(--verde-topo) 0%, var(--branco-base) 15%, var(--branco-base) 100%);
+      background: var(--verde-topo); /* topo verde puro */
     }
-
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
+    #content {
+      background: var(--branco-base);
+      min-height: 100%;
+      padding-top: env(safe-area-inset-top);
     }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      border: 0;
-      outline: 0;
-      box-shadow: none;
-      margin-top: 0;
-    }
-
-    /* Corrige espaçamento no iOS */
-    @supports (-webkit-touch-callout: none) {
-      img { margin-bottom: -1px; }
-    }
+    /* Outras regras suas */
   </style>
 </head>
+<body>
+  <div id="content">
+    <img src="D9778246-95AB-45C6-8A7E-6CFFF32021B4.jpeg" alt="Minha Foto">
+  </div>
+</body>
 <body>
   <div style="width:100%; height:30px; background:#297B42;"></div>
   <img src="D9778246-95AB-45C6-8A7E-6CFFF32021B4.jpeg" alt="Minha Foto">
