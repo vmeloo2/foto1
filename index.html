@@ -27,7 +27,11 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      background: linear-gradient(var(--verde-topo) 0%, var(--branco-base) 15%, var(--branco-base) 100%);
+      background: linear-gradient(
+        var(--verde-topo) 0%,
+        var(--verde-topo) 25%,
+        var(--branco-base) 100%
+      );
       background-attachment: fixed;
       color-scheme: light;
     }
@@ -37,6 +41,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
+      min-height: 100vh;
     }
 
     img {
@@ -49,7 +54,7 @@
       margin-top: 0;
     }
 
-    /* Camada verde sob a status bar (mantém o efeito translúcido da Apple) */
+    /* Camada verde sob a status bar */
     body::before {
       content: "";
       position: fixed;
