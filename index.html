@@ -1,64 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Manifest e tema -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#297B42">
-
-  <!-- Configurações iOS -->
+  <!-- Força o comportamento como app instalado -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Meu Site">
-  <link rel="apple-touch-icon" href="icone.png">
 
-  <title>Meu Site</title>
+  <!-- Define o tema verde tanto no claro quanto no escuro -->
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#297B42">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#297B42">
+
+  <!-- Para Safari e iOS mais antigos -->
+  <meta name="apple-mobile-web-app-title" content="Seu Site">
+  <meta name="application-name" content="Seu Site">
+
+  <title>Seu Site</title>
 
   <style>
-    :root {
-      --verde-topo: #297B42;
-      --branco-base: #ffffff;
-    }
-
     html, body {
+      height: 100%;
       margin: 0;
-      padding: 0;
-      min-height: 100%;
-      background: linear-gradient(var(--verde-topo) 0%, var(--branco-base) 12%, var(--branco-base) 100%) no-repeat fixed;
-      background-attachment: scroll;
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding-top: env(safe-area-inset-top);
-      overflow-x: hidden;
-      overflow-y: auto;
-      -webkit-user-select: none;
-      -webkit-touch-callout: none;
+      background: linear-gradient(to bottom, #297B42 0%, #ffffff 100%);
+      background-attachment: fixed;
     }
 
     img {
-      max-width: 100%;
-      height: auto;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
-      border: 0;
-      outline: 0;
-      box-shadow: none;
-      margin: 0;
-    }
-
-    /* Corrige espaçamento no iOS */
-    @supports (-webkit-touch-callout: none) {
-      img { margin-bottom: -1px; }
     }
   </style>
 </head>
 <body>
-  <img src="D9778246-95AB-45C6-8A7E-6CFFF32021B4.jpeg" alt="Minha Foto">
+  <!-- substitua 'sua-imagem.jpg' pela imagem que cobre o site -->
+  <img src="sua-imagem.jpg" alt="Imagem de fundo">
 </body>
 </html>
