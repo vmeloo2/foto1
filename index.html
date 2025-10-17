@@ -4,38 +4,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Força o comportamento como app instalado -->
+  <!-- Modo app -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#297B42">
 
-  <!-- Define o tema verde tanto no claro quanto no escuro -->
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#297B42">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#297B42">
-
-  <!-- Para Safari e iOS mais antigos -->
-  <meta name="apple-mobile-web-app-title" content="Seu Site">
-  <meta name="application-name" content="Seu Site">
-
-  <title>Seu Site</title>
+  <title>Meu Site</title>
 
   <style>
+    :root {
+      --verde: #297B42;
+      --branco: #ffffff;
+    }
+
     html, body {
-      height: 100%;
       margin: 0;
-      background: linear-gradient(to bottom, #297B42 0%, #ffffff 100%);
-      background-attachment: fixed;
+      padding: 0;
+      height: 100%;
+      background: var(--branco);
+    }
+
+    /* Faixa verde fixa por baixo da barra do iPhone */
+    .statusbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: env(safe-area-inset-top);
+      background: var(--verde);
+      z-index: 9999;
     }
 
     img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
       display: block;
+      width: 100%;
+      height: auto;
     }
   </style>
 </head>
 <body>
-  <!-- substitua 'sua-imagem.jpg' pela imagem que cobre o site -->
-  <img src="D9778246-95AB-45C6-8A7E-6CFFF32021B4.jpeg" alt="Imagem de fundo">
+  <div class="statusbar"></div>
+  <img src="D9778246-95AB-45C6-8A7E-6CFFF32021B4.jpeg" alt="Minha Foto">
 </body>
 </html>
