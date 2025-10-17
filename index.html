@@ -9,10 +9,9 @@
   <meta name="apple-mobile-web-app-title" content="Meu Site">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
-  <!-- Tentativas de forçar cor da status bar -->
+  <!-- Mantém a barra verde -->
   <meta name="theme-color" content="#297B42">
   <meta name="theme-color" content="#297B42" media="(prefers-color-scheme: dark)">
-  <meta name="color-scheme" content="dark light">
 
   <link rel="manifest" href="manifest.json">
 
@@ -29,7 +28,8 @@
       padding: 0;
       height: 100%;
       background: linear-gradient(var(--verde-topo) 0%, var(--branco-base) 15%, var(--branco-base) 100%);
-      color-scheme: dark;
+      background-attachment: fixed;
+      color-scheme: light;
     }
 
     body {
@@ -49,12 +49,7 @@
       margin-top: 0;
     }
 
-    /* Opção 2 — força degradê sob o vidro translúcido */
-    body {
-      background-attachment: fixed;
-    }
-
-    /* Opção 3 — camada fixa sob a barra de status */
+    /* Camada verde sob a status bar (mantém o efeito translúcido da Apple) */
     body::before {
       content: "";
       position: fixed;
