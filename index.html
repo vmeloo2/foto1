@@ -1,38 +1,78 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <!-- Configurações PWA -->
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Meu Site">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <!-- Tentativas de forçar cor da status bar -->
   <meta name="theme-color" content="#297B42">
-  <title>Site com Barra Verde</title>
+  <meta name="theme-color" content="#297B42" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="dark light">
+
+  <link rel="manifest" href="manifest.json">
+
+  <title>Meu Site</title>
+
   <style>
+    :root {
+      --verde-topo: #297B42;
+      --branco-base: #ffffff;
+    }
+
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      background: #ffffff;
+      background: linear-gradient(var(--verde-topo) 0%, var(--branco-base) 15%, var(--branco-base) 100%);
+      color-scheme: dark;
     }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border: 0;
+      outline: 0;
+      box-shadow: none;
+      margin-top: 0;
+    }
+
+    /* Opção 2 — força degradê sob o vidro translúcido */
+    body {
+      background-attachment: fixed;
+    }
+
+    /* Opção 3 — camada fixa sob a barra de status */
     body::before {
       content: "";
       position: fixed;
-      inset: 0;
-      background: #297B42;
-      z-index: -2;
-    }
-    img {
-      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: env(safe-area-inset-top);
+      background: var(--verde-topo);
       z-index: -1;
+    }
+
+    /* Corrige espaçamento no iOS */
+    @supports (-webkit-touch-callout: none) {
+      img { margin-bottom: -1px; }
     }
   </style>
 </head>
 <body>
-  <img src="sua-imagem.jpg" alt="Imagem de fundo">
+  <img src="D9778246-95AB-45C6-8A7E-6CFFF32021B4.jpeg" alt="Minha Foto">
 </body>
 </html>
